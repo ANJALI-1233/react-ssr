@@ -24,7 +24,6 @@ jobs:
           echo "HOSTNAME: $HOSTNAME"
           echo "USER_NAME: $USER_NAME"
 
-           
             cd /home/ubuntu/react-ssr/
             git clone https://github.com/ANJALI-1233/react-ssr.git
             npm install
