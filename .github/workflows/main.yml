@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -24,9 +24,8 @@ jobs:
           echo "HOSTNAME: $HOSTNAME"
           echo "USER_NAME: $USER_NAME"
 
-          echo "$PRIVATE_KEY" > private_key && sudo chmod 600 private_key
-          ssh -i ${{ secrets.EC2_PRIVATE_KEY }} ${USER_NAME}@${HOSTNAME} '
+           
             cd /home/ubuntu/react-ssr/
             git clone https://github.com/ANJALI-1233/react-ssr.git
             # Add more deployment steps as needed
-          '
+          
