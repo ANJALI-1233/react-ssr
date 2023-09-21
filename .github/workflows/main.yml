@@ -28,22 +28,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
             #Now we have got the access of EC2 and we will start the deploy .
-            DIR="/home/ubuntu/react-ssr"
-            pm2 delete all
+          
             cd /home/ubuntu
+            git clone https://github.com/ANJALI-1233/react-ssr.git
             
-            if [ ! -d $DIR ]
-            then
-              #mkdir server &&
-              git clone https://github.com/ANJALI-1233/react-ssr.git &&
-              cd react-ssr &&
-              npm i
-            else
-              cd react-ssr
-            fi
             
-            git checkout master &&
-            git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master &&
-            pm2 start index.js
