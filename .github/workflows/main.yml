@@ -39,7 +39,7 @@ jobs:
               cd react-ssr &&
               npm i
             else
-              cd server
+              cd react-ssr
             fi
             
             git checkout master &&
