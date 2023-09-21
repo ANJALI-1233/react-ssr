@@ -39,7 +39,7 @@ jobs:
               cd react-ssr
             fi
             
-            GIT_TERMINATE_ORPHAN_PROCESSES=false git checkout master &&
+            git checkout master &&
             git fetch --all &&
             #git reset --hard origin/master &&
             git pull origin master &&
