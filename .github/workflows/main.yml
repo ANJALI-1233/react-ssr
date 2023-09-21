@@ -9,16 +9,9 @@ jobs:
   deploy:
     runs-on: self-hosted
 
-    env:
-      GIT_TERMINATE_ORPHAN_PROCESSES: false
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Disable Git Orphan Process Termination
-        run: |
-          echo "GIT_TERMINATE_ORPHAN_PROCESSES=false" >> $GITHUB_ENV
 
       - name: Deploy to EC2
         env:
@@ -45,7 +38,7 @@ jobs:
               cd react-ssr
             fi
             
-            git checkout master &&
+            GIT_TERMINATE_ORPHAN_PROCESSES=false git checkout master &&
             git fetch --all &&
             #git reset --hard origin/master &&
             git pull origin master &&
