@@ -42,5 +42,5 @@ jobs:
             git fetch --all &&
             #git reset --hard origin/master &&
             git pull origin master &&
-            npm run dev
+            npm run dev &
             
