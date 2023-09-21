@@ -1,35 +1,32 @@
-name: CI
+name: Deploy to EC2
 
-# Controls when the workflow will run
 on:
-  
   push:
-    branches: [ master ]
-    
-  workflow_dispatch:
+    branches:
+      - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Deploy in EC2
+      - name: Deploy to EC2
         env:
-            PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.HOSTNAME  }}
-            USER_NAME : ${{ secrets.USER  }}
-            
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          HOSTNAME: ${{ secrets.HOSTNAME }}
+          USER_NAME: ${{ secrets.USER }}
+
         run: |
+          echo "PRIVATE_KEY: $PRIVATE_KEY"
+          echo "HOSTNAME: $HOSTNAME"
+          echo "USER_NAME: $USER_NAME"
+
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          
-            #Now we have got the access of EC2 and we will start the deploy .
-          
             cd /home/ubuntu/react-ssr/
             git clone https://github.com/ANJALI-1233/react-ssr.git
-            
-            
+            # Add more deployment steps as needed
+          '
