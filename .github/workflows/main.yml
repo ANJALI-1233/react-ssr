@@ -16,6 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Disable Git Orphan Process Termination
+        run: |
+          echo "GIT_TERMINATE_ORPHAN_PROCESSES=false" >> $GITHUB_ENV
+
       - name: Deploy to EC2
         env:
           PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
