@@ -26,6 +26,7 @@ jobs:
 
           #Now we have got the access of EC2 and we will start the deploy .
             DIR="/home/ubuntu/react-ssr/react-ssr"
+            pm2 delete all
             cd /home/ubuntu/react-ssr
 
           if [ ! -d $DIR ]
@@ -42,6 +43,5 @@ jobs:
             git fetch --all &&
             #git reset --hard origin/master &&
             git pull origin master &&
-            npm install pm2
             pm2 start &
             
