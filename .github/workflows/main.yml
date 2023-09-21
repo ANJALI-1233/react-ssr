@@ -27,5 +27,7 @@ jobs:
            
             cd /home/ubuntu/react-ssr/
             git clone https://github.com/ANJALI-1233/react-ssr.git
+            npm i
+            npm start
             # Add more deployment steps as needed
           
